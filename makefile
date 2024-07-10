@@ -38,4 +38,5 @@ build-dcd:
 build-vscode:
 	cd editors/vscode && npm run compile
 	cd editors/vscode && vsce package
+	cp editors/vscode/*.vsix bin/
 # 	vsce publish
