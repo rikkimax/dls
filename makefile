@@ -28,7 +28,7 @@ ifeq ($(CHECK), 1)
 endif
 
 
-build-lsp:
+build-dls:
 	@$(COMPILER) -of=bin/dls $(OPTIMIZE) $(PREVIEWS) -i -I$(BETTER_D) \
     $(BETTER_D)/rt/object.d $(BETTER_D)/cjson/cJSON.c  dls/main.d
 

@@ -21,7 +21,7 @@ import dls.completion;
 import dls.document_symbols;
 import dls.definition;
 
-pragma(lib, "/run/media/ryuukk/A2523E6A523E42F9/dev/dcd_templates/libdcd.a");
+pragma(lib, "dcd_templates/libdcd.a");
 
 
 __gshared:
