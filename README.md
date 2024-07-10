@@ -23,7 +23,7 @@ make build-dls
 make build-vscode
 ```
 
-```json
+```json5
     "dls.server.path":  "/home/ryuukk/dev/dls/bin/dls",
     "dls.server.imports": [
       "/home/you/project_b/",
@@ -33,7 +33,7 @@ make build-vscode
 
 - Sublime Text:
     - install sublime's LSP extension
-```json
+```json5
         "dls": {
             "enabled": true,
             "command": ["/home/ryuukk/dev/dls/bin/dls"],
