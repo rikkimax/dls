@@ -1,0 +1,10 @@
+.st/
+.vscode/
+.vs/
+bin/
+editors/vscode/.vscode/
+editors/vscode/node_modules/
+editors/vscode/out/
+dcd_templates/.dub/
+dcd_templates/.st/
+dcd_templates/bin/

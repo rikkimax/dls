@@ -1,0 +1,9 @@
+name "common"
+stringImportPaths "../bin"
+
+sourcePaths "src"
+importPaths "src"
+targetType "sourceLibrary"
+
+dependency "dcd:msgpack-d" version="*"
+versions "built_with_dub"

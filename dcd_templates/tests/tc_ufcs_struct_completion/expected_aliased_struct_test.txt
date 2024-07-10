@@ -1,0 +1,13 @@
+identifiers
+alignof	k
+init	k
+mangleof	k
+max	k
+min	k
+sizeof	k
+stringof	k
+tupleof	k
+ufcsExactAliasedType	F
+ufcsSomeInt	F
+ufcsSomeShort	F
+x	v

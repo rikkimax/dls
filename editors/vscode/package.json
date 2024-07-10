@@ -1,0 +1,137 @@
+{
+	"name": "dls",
+	"publisher": "ryuukk",
+	"displayName": "D Language",
+	"description": "D language support",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ryuukk/dls.git"
+	},
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.66.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onLanguage:d"
+	],
+	"icon": "images/emblem.png",
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "dls.start",
+				"title": "Start D Language Server",
+				"category": "D Language Server"
+			},
+			{
+				"command": "dls.stop",
+				"title": "Stop D Language Server",
+				"category": "D Language Server"
+			},
+			{
+				"command": "dls.restart",
+				"title": "Restart D Language Server",
+				"category": "D Language Server"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "D language client configuration",
+			"properties": {
+                "dls.server.path": {
+                    "type": [
+                        "null",
+                        "string"
+                    ],
+                    "default": null,
+                    "markdownDescription": "Path to dls executable"
+                },
+                "dls.server.imports": {
+                    "type": [
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [],
+                    "markdownDescription": "Import paths"
+                }
+			}
+		},
+		"languages": [
+			{
+				"id": "d",
+				"aliases": [
+					"d",
+					"D"
+				],
+				"icon": {
+					"light": "./fileicons/d-file.svg",
+					"dark": "./fileicons/d-file.svg"
+				},
+				"extensions": [
+					".d"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "d",
+				"scopeName": "source.d",
+				"path": "./syntaxes/d.tmLanguage.json"
+			},
+			{
+				"scopeName": "markdown.d.codeblock",
+				"path": "./syntaxes/codeblock.json",
+				"injectTo": [
+					"text.html.markdown"
+				],
+				"embeddedLanguages": {
+					  "meta.embedded.block.d": "d"
+					}
+			}
+		],
+		"breakpoints": [
+			{
+				"language": "d"
+			}
+		]
+	},
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"package": "vsce package -o extension.vsix",
+		"build": "npm run compile && npm run package",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.0",
+		"@types/node": "~16.11.7",
+		"@types/node-fetch": "^2.6.1",
+		"@types/vscode": "~1.66.0",
+		"@typescript-eslint/eslint-plugin": "^4.33.0",
+		"@typescript-eslint/parser": "^4.33.0",
+		"eslint": "^7.32.0",
+		"glob": "^7.2.0",
+		"mocha": "^10.2.0",
+		"typescript": "^4.6.2",
+		"vsce": "^1.97.0",
+		"vscode-test": "^1.6.1"
+	},
+	"dependencies": {
+		"adm-zip": "^0.5.9",
+		"https-proxy-agent": "^5.0.0",
+		"node-fetch": "^2.6.7",
+		"vscode-languageclient": "8.1.0"
+	},
+	"configurationDefaults": {
+
+	}
+}

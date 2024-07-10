@@ -1,0 +1,12 @@
+{
+	"name": "libdparse",
+	"targetName": "dparse",
+    "targetType": "sourceLibrary",
+	"description": "Library for lexing and parsing D source code",
+	"license": "BSL-1.0",
+	"-ddoxFilterArgs": [
+		"--unittest-examples",
+		"--min-protection=Protected"
+	],
+	"-ddoxTool": "scod"
+}

@@ -1,0 +1,3 @@
+identifiers
+arrayStuff1	F
+arrayStuff7	F

@@ -1,0 +1,8 @@
+identifiers
+alignof	k				
+init	k				int
+mangleof	k				
+max	k				int
+min	k				int
+sizeof	k				
+stringof	k				

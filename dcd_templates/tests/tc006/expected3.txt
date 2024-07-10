@@ -1,0 +1,9 @@
+identifiers
+alignof	k
+doStuff	F
+init	k
+mangleof	k
+max	k
+min	k
+sizeof	k
+stringof	k
