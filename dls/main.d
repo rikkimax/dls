@@ -21,7 +21,7 @@ import dls.completion;
 import dls.document_symbols;
 import dls.definition;
 
-pragma(lib, "dcd_templates/libdcd.a");
+pragma(lib, "dls/libdcd.a");
 
 
 __gshared:

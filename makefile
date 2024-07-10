@@ -33,10 +33,11 @@ build-dls:
     $(BETTER_D)/rt/object.d $(BETTER_D)/cjson/cJSON.c  dls/main.d
 
 build-dcd:
-	cd /run/media/ryuukk/A2523E6A523E42F9/dev/dcd_templates && dub build -c library
+	cd dcd_templates/ && dub build -c library
+	mv dcd_templates/libdcd.a dls/
 
 build-vscode:
 	cd editors/vscode && npm run compile
 	cd editors/vscode && vsce package
-	cp editors/vscode/*.vsix bin/
+	mv editors/vscode/*.vsix bin/
 # 	vsce publish
