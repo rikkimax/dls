@@ -35,7 +35,7 @@ extern(C) void* j_alloc(size_t sz) {
 extern(C) void j_free(void* ptr) {
 }
 
-extern(C) void main(int argc, char**argv) {
+extern(C) void main(int argc, char** argv) {
     rt_register_crash_handler(null);
     arena = mem.ArenaAllocator.create(mem.c_allocator);
 
@@ -75,9 +75,9 @@ extern(C) void main(int argc, char**argv) {
     dcd_add_imports(extraImports);
 
     cjson.cJSON_Hooks hooks;
-    hooks.malloc_fn = & j_alloc;
-    hooks.free_fn = & j_free;
-    cjson.cJSON_InitHooks( & hooks);
+    hooks.malloc_fn = &j_alloc;
+    hooks.free_fn = &j_free;
+    cjson.cJSON_InitHooks(&hooks);
 
      //test
     //{
