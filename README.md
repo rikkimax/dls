@@ -10,6 +10,9 @@
 
 # Build
 
+Linux only for now, once ready, i'll setup CI/CD for Linux/macOS/Windows
+
+
 ```
 make build-dcd
 make build-dls
