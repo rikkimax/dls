@@ -37,6 +37,7 @@ build-dcd:
 	mv dcd_templates/libdcd.a dls/
 
 build-vscode:
+	cd editors/vscode && npm install
 	cd editors/vscode && npm run compile
 	cd editors/vscode && vsce package
 	mv editors/vscode/*.vsix bin/
