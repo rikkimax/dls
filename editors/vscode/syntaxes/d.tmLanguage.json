@@ -221,6 +221,10 @@
                     "include": "#class-identifier"
                 },
                 {
+                    "name": "keyword.operator.overload.d",
+                    "match": "(?<!\\$)\\b(opDispatch|opEquals|opCmp|opUnary|opBinary|opApply|opSlice|opIndex|opAssign|opOpAssign|opIndexAssign)\\b(?!\\$)"
+                },
+                {
                     "include": "#function-identifier"
                 }
 
@@ -229,7 +233,7 @@
         "class-identifier": {
             "patterns": [
                 {
-                    "match": "(?<!\\$)\\b(bool|num|uint|int|ushort|short|float|ubyte|byte|char|double|dynamic)\\b(?!\\$)",
+                    "match": "(?<!\\$)\\b(bool|num|uint|int|ushort|short|long|ulong|float|ubyte|byte|char|double|size_t|string|str|ptrdiff_t|isize|usize|u8|u16|u32|u64|i8|i16|i32|i64|f32|f64)\\b(?!\\$)",
                     "name": "support.class.d"
                 },
                 {
@@ -316,7 +320,7 @@
                 },
                 {
                     "name": "keyword.control.d",
-                    "match": "(?<!\\$)\\b(break|case|continue|default|do|else|for|foreach|reverse_foreach|if|in|switch|while|when|version)\\b(?!\\$)"
+                    "match": "(?<!\\$)\\b(break|case|continue|default|do|else|for|foreach|reverse_foreach|if|in|switch|while|when|version|function|delegate|nothrow|pure|__traits|pragma)\\b(?!\\$)"
                 },
                 {
                     "name": "keyword.control.d",
@@ -340,7 +344,7 @@
                 },
                 {
                     "name": "storage.modifier.d",
-                    "match": "(?<!\\$)\\b(static|public|private|final|const|auto|required|shared|__gshared|export|extern)\\b(?!\\$)"
+                    "match": "(?<!\\$)\\b(static|public|private|final|const|ref|immutable|noreturn|scope|auto|required|shared|__gshared|export|extern)\\b(?!\\$)"
                 },
                 {
                     "name": "storage.type.primitive.d",
