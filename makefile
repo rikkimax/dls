@@ -1,5 +1,9 @@
 COMPILER?=dmd
 PREVIEWS=-preview=rvaluerefparam -preview=bitfields
+
+
+
+
 ifeq ($(OS), Windows_NT)
 	exe = .exe
 	dll = .dll
@@ -32,6 +36,14 @@ build-dls:
 
 build-dcd:
 	cd dcd_templates/ && dub build -c library
+	mv dcd_templates/libdcd.a server/dls/
+
+build-dls-release:
+	ldmd2 -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -i -Iserver/ \
+    server/cjson/cJSON.c  server/dls/main.d
+
+build-dcd-release:
+	cd dcd_templates/ && dub build -c library --compiler=ldc2 -b release
 	mv dcd_templates/libdcd.a server/dls/
 
 build-vscode:
