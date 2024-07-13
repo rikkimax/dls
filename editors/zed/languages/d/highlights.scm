@@ -12,7 +12,9 @@
 (int_literal) @number
 (float_literal) @number
 (char_literal) @number
-(declarator (identifier)) @variable
+((identifier) @variable)
+(declarator (identifier) @variable)
+(auto_declaration (identifier) @variable *)
 (at_attribute) @property
 
 [
