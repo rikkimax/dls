@@ -13,8 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build s
-      run: make build-dcd
-      run: make build-dls
+      run: make build-dcd && make build-dls
     - name: Move to Dist
       run: |
         mkdir dist
