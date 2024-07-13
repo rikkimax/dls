@@ -12,7 +12,7 @@
 (int_literal) @number
 (float_literal) @number
 (char_literal) @number
-(identifier) @variable
+(declarator (identifier)) @variable
 (at_attribute) @property
 
 [
@@ -38,17 +38,29 @@
 (parameter_attribute (in) @keyword.storage)
 (parameter_attribute (out) @keyword.storage)
 
+
+(template_instance (identifier) @function)
+
 (function_declaration (identifier) @function)
 
 (struct_declaration ((identifier) @type))
 (class_declaration ((identifier) @type))
 (enum_declaration ((identifier) @type))
 
+(template_parameter (identifier) @type)
+(template_parameter (type (identifier)) @variable)
+
+
+(arguments (expression (property_expression (identifier)) @variable) )
+
+(type (template_instance (identifier)) @type)
+(function_declaration (type (identifier)) @type)
 (parameter (type (identifier) @type))
 (variable_declaration (type (identifier) @type))
 
-(call_expression (identifier) @function)
-(call_expression (type (identifier) @function))
+(call_expression
+  (type
+    (identifier) @function .))
 
 [
     (abstract)
@@ -243,10 +255,8 @@
 (label (identifier) @label)
 (goto_statement (goto) @keyword.control (identifier) @label)
 
-; builtin types and type aliases
-; this covers built-in types, also other cases where the identifier can only
-; be a type (such as in an is-expression on a constraint)
-(type (identifier) @type)
+
+
 
 ; these are listed last, because they override keyword queries
 (identity_expression (in) @operator)
