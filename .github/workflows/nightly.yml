@@ -1,0 +1,63 @@
+name: nightly
+
+
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: 0 20 * * *
+jobs:
+
+  dist-x86_64-unknown-linux-gnu:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build s
+      run: make build-dcd
+      run: make build-dls
+    - name: Move to Dist
+      run: |
+        mkdir dist
+        mv bin/dls dist/s-x86_64-unknown-linux-gnu
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist-x86_64-unknown-linux-gnu
+        path: bin/dls
+
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: ['dist-x86_64-unknown-linux-gnu']
+    steps:
+    - name: Install Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: ${{ env.FETCH_DEPTH }}
+
+    - run: echo "HEAD_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
+    - run: 'echo "HEAD_SHA: $HEAD_SHA"'
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: dist-x86_64-unknown-linux-gnu
+        path: dist
+    - run: |
+        ls -al ./dist
+        cd dist
+
+        chmod +x s-x86_64-unknown-linux-gnu
+        zip -r s-x86_64-unknown-linux-gnu.zip s-x86_64-unknown-linux-gnu builtin
+
+        rm -rf builtin
+    - name: Publish Release
+      uses: ./.github/actions/github-release
+      with:
+        files: "dist/*"
+        name: "nightly"
+        token: ${{ secrets.GITHUB_TOKEN }}
