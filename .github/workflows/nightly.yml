@@ -16,11 +16,11 @@ jobs:
     #     compiler: ldc-master
     - uses: actions/checkout@v1
     - name Install LDC
-      run: curl -fsS https://dlang.org/install.sh | bash -s dmd && source ~/dlang/ldc*/activate
+      run: 'curl -fsS https://dlang.org/install.sh | bash -s dmd && source ~/dlang/ldc*/activate'
     - name: Build DCD
       run: make build-dcd-release
     - name: Build DLS
-      run: make build-dls-release 
+      run: make build-dls-release
     - name: Move to Dist
       run: |
         mkdir dist
