@@ -17,7 +17,7 @@ import dls.initialize;
 import dls.completion;
 import dls.document_symbols;
 import dls.definition;
-import dls.semantic_tokens;
+//import dls.semantic_tokens;
 
 pragma(lib, "server/dls/libdcd.a");
 
