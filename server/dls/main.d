@@ -1,9 +1,6 @@
 module dls.main;
 
-
-import rt.crash_handler;
 import rt.dbg;
-import rt.thread;
 import str = rt.str;
 import args = rt.args;
 import mem = rt.memz;
@@ -20,8 +17,9 @@ import dls.initialize;
 import dls.completion;
 import dls.document_symbols;
 import dls.definition;
+import dls.semantic_tokens;
 
-pragma(lib, "dls/libdcd.a");
+pragma(lib, "server/dls/libdcd.a");
 
 
 __gshared:
@@ -36,7 +34,6 @@ extern(C) void j_free(void* ptr) {
 }
 
 extern(C) void main(int argc, char** argv) {
-    rt_register_crash_handler(null);
     arena = mem.ArenaAllocator.create(mem.c_allocator);
 
     // TODO: remove this
@@ -202,6 +199,12 @@ void handle_request(cjson.cJSON* request) {
     else if (strcmp(method, "textDocument/definition") == 0) {
         lsp_definition(id, params_json);
     }
+    //else if (strcmp(method, "textDocument/semanticTokens/full") == 0) {
+    //    lsp_semantic_tokens(id, params_json, true);
+    //}
+    else if (strcmp(method, "textDocument/semanticTokens/range") == 0) {
+        lsp_semantic_tokens(id, params_json, false);
+    }
     else if (strcmp(method, "dls/imports") == 0) {
         lsp_imports(id, params_json);
     }
@@ -352,6 +355,26 @@ cjson.cJSON* create_range(cjson.cJSON* obj, const(char)* id, Position s, Positio
     cjson.cJSON_AddNumberToObject(end, "line", e.line);
     cjson.cJSON_AddNumberToObject(end, "character", e.character);
     return range;
+}
+
+bool get_range(cjson.cJSON* obj, Position* start, Position* end)
+{
+    auto range_json = cjson.cJSON_GetObjectItem(obj, "range");
+    auto start_json = cjson.cJSON_GetObjectItem(range_json, "start");
+    auto end_json = cjson.cJSON_GetObjectItem(range_json, "end");
+    {
+        auto line_json = cjson.cJSON_GetObjectItem(start_json, "line");
+        auto char_json = cjson.cJSON_GetObjectItem(start_json, "character");
+        start.line = line_json.valueint;
+        start.character = char_json.valueint;
+    }
+    {
+        auto line_json = cjson.cJSON_GetObjectItem(end_json, "line");
+        auto char_json = cjson.cJSON_GetObjectItem(end_json, "character");
+        end.line = line_json.valueint;
+        end.character = char_json.valueint;
+    }
+    return true;
 }
 
 

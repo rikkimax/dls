@@ -85,10 +85,20 @@ void lsp_completion(int id, cjson.cJSON * params_json) {
             LINFO("is fn");
             auto ok = split_alloc(allocator, completion.definition, " ");
             LINFO("> {}", ok.length);
+
             if (ok.length >= 2)
             {
-                rtype = ok[0];
-                detail = cast(char[])completion.definition[rtype.length +1 + identifier.length .. $];
+                LINFO("{} -- {} -- {}", completion.definition, rtype, completion.typeOf);
+                if(completion.typeOf.length == 0)
+                {
+                    rtype = cast(char[]) completion.typeOf[0 .. $];
+                    detail = cast(char[]) completion.definition[identifier.length .. $];
+                }
+                else
+                {
+                    rtype = ok[0];
+                    detail = cast(char[])completion.definition[rtype.length +1 + identifier.length .. $];
+                }
             }
         }
         else if (completion.kind == 's' || completion.kind == 'c')

@@ -208,6 +208,19 @@ struct Position
 {
     size_t line;
     size_t character;
+
+    int opCmp(const Position other) const
+    {
+        if (line < other.line)
+            return -1;
+        if (line > other.line)
+            return 1;
+        if (character < other.character)
+            return -1;
+        if (character > other.character)
+            return 1;
+        return 0;
+    }
 }
 Position bytesToPosition(string text, size_t bytes)
 {

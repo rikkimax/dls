@@ -83,6 +83,7 @@ struct DSymbolInfo
 }
 
 extern(C) DSymbolInfo[] dcd_document_symbols(const(char)* content);
+extern(C) DSymbolInfo[] dcd_document_symbols_sem(const(char)* content);
 
 
 

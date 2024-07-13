@@ -1,6 +1,4 @@
-
-BETTER_D=/run/media/ryuukk/E0C0C01FC0BFFA3C/dev/kdom/better_d
-COMPILER?=LD_PRELOAD=/usr/lib/libmimalloc.so "/home/ryuukk/dev/install/linux/bin64/dmd"
+COMPILER?=dmd
 PREVIEWS=-preview=rvaluerefparam -preview=bitfields
 ifeq ($(OS), Windows_NT)
 	exe = .exe
@@ -29,12 +27,12 @@ endif
 
 
 build-dls:
-	@$(COMPILER) -of=bin/dls $(OPTIMIZE) $(PREVIEWS) -i -I$(BETTER_D) \
-    $(BETTER_D)/rt/object.d $(BETTER_D)/cjson/cJSON.c  dls/main.d
+	@$(COMPILER) -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -i -Iserver/ \
+    server/cjson/cJSON.c  server/dls/main.d
 
 build-dcd:
 	cd dcd_templates/ && dub build -c library
-	mv dcd_templates/libdcd.a dls/
+	mv dcd_templates/libdcd.a server/dls/
 
 build-vscode:
 	cd editors/vscode && npm install
