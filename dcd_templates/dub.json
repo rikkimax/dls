@@ -18,7 +18,7 @@
     {
       "name": "library",
       "targetType": "staticLibrary",
-      "lflags-ldc": [ "-static" ],
+      "lflags-ldc2": [ "-static" ],
       "excludedSourceFiles": [
         "src/dcd/client/*",
         "src/dcd/server/main.d"
