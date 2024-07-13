@@ -11,6 +11,9 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
+    - uses: dlang-community/setup-dlang@v2
+      with:
+        compiler: dmd
     - uses: actions/checkout@v1
     - name: Build s
       run: make build-dcd && make build-dls
