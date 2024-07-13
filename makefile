@@ -31,7 +31,7 @@ endif
 
 
 build-dls:
-	@$(COMPILER) -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -i -Iserver/ \
+	@$(COMPILER) -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -betterC -i -Iserver/ \
     server/cjson/cJSON.c server/dls/main.d
 
 build-dcd:
