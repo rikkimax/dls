@@ -202,9 +202,9 @@ void handle_request(cjson.cJSON* request) {
     //else if (strcmp(method, "textDocument/semanticTokens/full") == 0) {
     //    lsp_semantic_tokens(id, params_json, true);
     //}
-    else if (strcmp(method, "textDocument/semanticTokens/range") == 0) {
-        lsp_semantic_tokens(id, params_json, false);
-    }
+    //else if (strcmp(method, "textDocument/semanticTokens/range") == 0) {
+    //    lsp_semantic_tokens(id, params_json, false);
+    //}
     else if (strcmp(method, "dls/imports") == 0) {
         lsp_imports(id, params_json);
     }
