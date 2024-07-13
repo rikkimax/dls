@@ -15,7 +15,7 @@ jobs:
       with:
         compiler: ldc-master
     - uses: actions/checkout@v1
-    - name: Build s
+    - name: Build dls
       run: make build-dcd-release && make build-dls-release OPTIMIZE:RELEASE
     - name: Move to Dist
       run: |
