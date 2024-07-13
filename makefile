@@ -39,7 +39,7 @@ build-dcd:
 	mv dcd_templates/libdcd.a server/dls/
 
 build-dls-release:
-	ldmd2 -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -i -Iserver/ \
+	ldmd2 -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -L-v -i -Iserver/ \
     server/cjson/cJSON.c server/dls/main.d
 
 build-dcd-release:
