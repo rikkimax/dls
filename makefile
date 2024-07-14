@@ -35,8 +35,9 @@ build-dcd:
 	mv dcd_templates/libdcd.a server/dls/
 
 build-dls-release:
-	ldc2 -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -L-v -v -L--unresolved-symbols=ignore-in-object-files -i -Iserver/ \
-    server/cjson/cJSON.c server/dls/main.d
+	# ldc2 -of=bin/dls$(exe) $(OPTIMIZE) $(PREVIEWS) -L-v -v -L--unresolved-symbols=ignore-in-object-files -i -Iserver/ server/cjson/cJSON.c server/dls/main.d
+	ldc2 -of=bin/dls.o $(OPTIMIZE) $(PREVIEWS) -Iserver/ -i server/cjson/cJSON.c server/dls/main.d
+	ldc2 -of=bin/dls$(exe) bin/dls.o
 
 build-dcd-release:
 	cd dcd_templates/ && dub build -c library --compiler=ldc2 -b release
