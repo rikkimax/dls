@@ -5,6 +5,9 @@ on:
   workflow_dispatch:
   #schedule:
   #- cron: 0 20 * * *
+  push:
+    # only trigger on branches, not on tags
+    branches: '**'
 jobs:
 
   dist-x86_64-unknown-linux-gnu:
