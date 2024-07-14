@@ -12,7 +12,7 @@ ifeq ($(OS), Windows_NT)
 else
 	exe =
 	dll = .so
-	LD_LIBRARY_PATH=.
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
 endif
 
 MODE ?= DEBUG
