@@ -1,9 +1,6 @@
 COMPILER?=dmd
 PREVIEWS=-preview=rvaluerefparam -preview=bitfields
 
-
-
-
 ifeq ($(OS), Windows_NT)
 	exe = .exe
 	dll = .dll
